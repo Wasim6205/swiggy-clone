@@ -39,6 +39,7 @@ const Header = () => {
     {
         icon: <PiShoppingCart />,
         name: "Cart",
+        sup: 2,
     },
   ]
 
@@ -50,19 +51,20 @@ const Header = () => {
         style={{
           opacity: toggle ? 1 : 0,
           visibility: toggle ? "visible" : "hidden",
+          zIndex:999
         }}
       >
         <div
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="w-[500px] bg-white h-full absolute duration-[400ms]"
+          className="w-[50vw] md:w-[500px] bg-white h-full absolute duration-[400ms]"
           style={{
             left: toggle ? "0%" : "-100%",
           }}
         ></div>
       </div>
-      <header className="p-[15px] shadow-xl text-[#686b78]">
+      <header className="sticky top-0 bg-white z-10 p-[15px] shadow-xl text-[#686b78]">
         <div className="max-w-[1200px] mx-auto flex items-center">
           <div className="w-[100px]">
             <img src="images/logo.png" className="w-full" alt="logo" />
@@ -78,7 +80,7 @@ const Header = () => {
               className="inline cursor-pointer text-[#fc8019]"
             />
           </div>
-            <nav className="flex list-none gap-7 ml-auto font-semibold text-[18px]">
+            <nav className="hidden md:flex list-none gap-7 ml-auto font-semibold text-[18px]">
                 {
                     links.map((link, index) => (
                         <li key={index} className="flex cursor-pointer hover:text-[#fc8019] items-center gap-2">
