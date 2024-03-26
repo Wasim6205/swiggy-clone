@@ -6,6 +6,17 @@ import { RestData } from "../RestData";
 
 const TopRest = () => {
   const [data, setData] = useState(RestData);
+  const [slide, setSlide] = useState(0);
+
+  const nextSlide = () => {
+    if(data.length - 4 == slide) return false;
+    setSlide(slide + 2)
+  }
+
+  const prevSlide = () => {
+    if(slide == 0) return false;
+    setSlide(slide - 2)
+  }
 
   return (
     <div className="max-w-[1200px] mx-auto px-2 mb-[100px]">
@@ -14,10 +25,10 @@ const TopRest = () => {
           Top restaurant chains in Ranchi
         </div>
         <div className="flex">
-          <div className="cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2">
+          <div onClick={prevSlide} className="cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2">
             <FaArrowLeft />
           </div>
-          <div className="cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2">
+          <div onClick={nextSlide} className="cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2">
             <FaArrowRight />
           </div>
         </div>
@@ -26,7 +37,7 @@ const TopRest = () => {
       <div className="flex gap-5 overflow-hidden">
         {
             data.map((d,i) => (
-                <Card {...d} key={i} width="w-full md:w-[273px]" />
+                <Card slide={slide} {...d} key={i} width="w-full md:w-[273px]" />
             ))
         }
       </div>
